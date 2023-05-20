@@ -105,5 +105,67 @@
 -- SELECT * FROM quiz_table;
 
 
-SELECT * FROM quiz_table;
+-- SELECT * FROM quiz_table;
 
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (30, 'What is the capital of Australia?', 'Sydney', 'Melbourne', 'Canberra', 'Perth', 'Canberra', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (31, 'Which planet is known as the Red Planet?', 'Venus', 'Mars', 'Saturn', 'Neptune', 'Mars', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (32, 'Who painted the Mona Lisa?', 'Vincent van Gogh', 'Pablo Picasso', 'Leonardo da Vinci', 'Michelangelo', 'Leonardo da Vinci', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (33, 'What is the chemical symbol for gold?', 'Au', 'Ag', 'Cu', 'Fe', 'Au', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (34, 'Which country is known as the Land of the Rising Sun?', 'China', 'India', 'Japan', 'Thailand', 'Japan', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (35, 'What is the largest ocean in the world?', 'Atlantic Ocean', 'Arctic Ocean', 'Indian Ocean', 'Pacific Ocean', 'Pacific Ocean', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (36, 'Who wrote the play "Romeo and Juliet"?', 'William Shakespeare', 'Jane Austen', 'Charles Dickens', 'Mark Twain', 'William Shakespeare', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (37, 'What is the largest mammal on Earth?', 'Elephant', 'Blue whale', 'Giraffe', 'Hippopotamus', 'Blue whale', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (38, 'Who is the author of the Harry Potter book series?', 'J.K. Rowling', 'Stephen King', 'George Orwell', 'Agatha Christie', 'J.K. Rowling', 0);
+
+-- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+-- VALUES (39, 'What is the largest organ in the human body?', 'Heart', 'Lungs', 'Brain', 'Skin', 'Skin', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (40, 'What is the largest desert in the world?', 'Sahara Desert', 'Gobi Desert', 'Arabian Desert', 'Antarctic Desert', 'Sahara Desert', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (41, 'Who painted the "Starry Night"?', 'Pablo Picasso', 'Vincent van Gogh', 'Claude Monet', 'Leonardo da Vinci', 'Vincent van Gogh', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (42, 'What is the smallest country in the world?', 'Monaco', 'Maldives', 'Vatican City', 'San Marino', 'Vatican City', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (43, 'Which planet is known as the "Blue Planet"?', 'Venus', 'Mars', 'Earth', 'Neptune', 'Earth', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (44, 'Who wrote the novel "To Kill a Mockingbird"?', 'Harper Lee', 'F. Scott Fitzgerald', 'J.D. Salinger', 'George Orwell', 'Harper Lee', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (45, 'What is the largest species of shark?', 'Tiger shark', 'Great white shark', 'Whale shark', 'Hammerhead shark', 'Whale shark', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (46, 'Who discovered penicillin?', 'Marie Curie', 'Isaac Newton', 'Alexander Fleming', 'Albert Einstein', 'Alexander Fleming', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (47, 'What is the world''s largest coral reef system?', 'Great Barrier Reef', 'Belize Barrier Reef', 'Maldives Coral Reef', 'Red Sea Coral Reef', 'Great Barrier Reef', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (48, 'Who is the founder of Microsoft?', 'Bill Gates', 'Steve Jobs', 'Mark Zuckerberg', 'Jeff Bezos', 'Bill Gates', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (49, 'What is the chemical symbol for iron?', 'I', 'Fe', 'Ir', 'In', 'Fe', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (50, 'Which city is known as the "Eternal City"?', 'Rome', 'Athens', 'Cairo', 'Paris', '
