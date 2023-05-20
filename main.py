@@ -4,19 +4,19 @@ import random
 import os
 import platform
 
-MAX_QUESTIONS = 5
+# MAX_QUESTIONS = 5
 
-def clear_terminal():
-    # Check the operating system
-    system = platform.system()
+# def clear_terminal():
+#     # Check the operating system
+#     system = platform.system()
 
-    # Clear the terminal screen based on the operating system
-    if system == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+#     # Clear the terminal screen based on the operating system
+#     if system == "Windows":
+#         os.system("cls")
+#     else:
+#         os.system("clear")
 
-clear_terminal()
+# clear_terminal()
 
 
 # Connect to the SQLite database
@@ -34,57 +34,58 @@ priority_questions = cursor.execute(
     "SELECT serial_number, question, option1, option2, option3, option4, correct_answer, time, priority FROM quiz_table ORDER BY priority DESC LIMIT 12"
 ).fetchall()
 
-quiz_question = ()
+oldest_time_questions = (list(time_questions)[:3])
+highest_priority_questions = (list(priority_questions)[:2])
+
 # Set of 10 questions based on intersection
-intersection_questions = set(time_questions) & set(priority_questions)
+intersection_questions = set((list(time_questions)[3:13])) & set(list(priority_questions)[2:12])
 
-# Select the first 5 questions from the intersection
-intersection_questions = list(intersection_questions)[:5]
+#select 5 random questions 
+if len(intersection_questions)>=5:
+    random_questions = random.sample(list(intersection_questions), 5)
+else:
+    intersection_questions = set((list(time_questions)[3:13])) | set(list(priority_questions)[2:12])
+    random_questions = random.sample(list(intersection_questions), 5)
 
-# Set of 3 questions based on oldest time, Sort by time and select the first 3 questions
-oldest_time_questions = sorted(time_questions, key=lambda x: x[7])[:3]
-
-# Set of 2 questions based on highest priority, Sort by priority and select the first 2 questions
-highest_priority_questions = sorted(
-    priority_questions, key=lambda x: x[8], reverse=True
-)[:2]
 
 # Combine the question sets
-quiz_question = (
-    intersection_questions + oldest_time_questions + highest_priority_questions
+quiz_question = set(
+    list(random_questions) + oldest_time_questions + highest_priority_questions
 )
 
+count = 1
+# for question_data in quiz_question:
+#     (
+#         serial_number,
+#         question,
+#         correct_answer,
+#         option1,
+#         option2,
+#         option3,
+#         option4,
+#         time,
+#         priority,
+#     ) = question_data
+#     print("---------------------Question ",count, "-----------------------")
+#     count+=1
+#     print(f"Serial Number: {serial_number}")
+#     print(f"Question: {question}")
+#     print(f"Options:")
+#     # print(f"1. {option1}")
+#     # print(f"2. {option2}")
+#     # print(f"3. {option3}")
+#     # print(f"4. {option4}")
+#     print(f"Correct Answer: {correct_answer}")
+#     print(f"Time: {time}")
+#     print(f"Priority: {priority}")
+    
 
+
+#display questions 
 for question_data in quiz_question:
     (
         serial_number,
         question,
-        correct_answer,
-        option1,
-        option2,
-        option3,
-        option4,
-        time,
-        priority,
-    ) = question_data
-    print(f"Serial Number: {serial_number}")
-    print(f"Question: {question}")
-    print(f"Options:")
-    # print(f"1. {option1}")
-    # print(f"2. {option2}")
-    # print(f"3. {option3}")
-    # print(f"4. {option4}")
-    print(f"Correct Answer: {correct_answer}")
-    print(f"Time: {time}")
-    print(f"Priority: {priority}")
-    print("-----------------------")
-
-random_questions = random.sample(quiz_question, 5)
-
-for question_data in random_questions:
-    (
-        serial_number,
-        question,
         option1,
         option2,
         option3,
@@ -93,10 +94,10 @@ for question_data in random_questions:
         time,
         priority,
     ) = question_data
-
-    # score = score_dict.get(question, 0)  # retrieve the score for the question
 
     # Present the question to the user and collect their response
+    print("---------------------Question ",count, "-----------------------")
+    count+=1
     print(serial_number, " ", question)
     print("Options:")
     print(f"1. {option1}")
