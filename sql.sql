@@ -102,7 +102,6 @@
 
 -- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 -- VALUES (29, 'What is the largest bone in the human body?', 'Femur', 'Humerus', 'Tibia', 'Radius', 'Femur', 0);
--- SELECT * FROM quiz_table;
 
 
 SELECT * FROM quiz_table;
