@@ -1,4 +1,3 @@
-import sqlite3
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -11,13 +10,19 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QButtonGroup,
 )
-import datetime
+
 from quiz_master import QuizMaster
+
 
 class QuizMasterGUI(QMainWindow):
     def __init__(self):
+        # Call the parent constructor
         super().__init__()
 
+        # Create an instance of QuizMaster with the database filename
+        self.quiz_database = QuizMaster("database.db")
+
+        # Set the window title
         self.setWindowTitle("QuizMaster")
 
         # Create a central widget and set it as the main widget
@@ -45,19 +50,22 @@ class QuizMasterGUI(QMainWindow):
         self.question_label = QLabel("")
         left_layout.addWidget(self.question_label)
 
-        # Create radio buttons for options
+        # Create radio buttons for option 1
         self.option1_button = QRadioButton()
         left_layout.addWidget(self.option1_button)
         self.option1_button.hide()
 
+        # Create radio buttons for option 2
         self.option2_button = QRadioButton()
         left_layout.addWidget(self.option2_button)
         self.option2_button.hide()
 
+        # Create radio buttons for option 3
         self.option3_button = QRadioButton()
         left_layout.addWidget(self.option3_button)
         self.option3_button.hide()
 
+        # Create radio buttons for option 4
         self.option4_button = QRadioButton()
         left_layout.addWidget(self.option4_button)
         self.option4_button.hide()
@@ -77,16 +85,15 @@ class QuizMasterGUI(QMainWindow):
 
         # Dictionary to store the question, options, and answer
         self.quiz_data = {
+            "serial_number": "",
             "question": "",
             "options": [],
             "answer": "",
+            "priority": "",
         }
-        
-        # Create an instance of QuizMaster with the database filename
-        quiz_master = QuizMaster("database.db")
 
         # Retrieve the questions
-        self.questions = quiz_master.get_questions()
+        self.questions = self.quiz_database.get_questions()
         print(self.questions)
 
         # Variable to keep track of the current question index
@@ -95,15 +102,20 @@ class QuizMasterGUI(QMainWindow):
         self.quiz_questions = []
         for question in self.questions:
             self.quiz_data["serial_number"] = question[0]
-            self.quiz_data["question"] = str(question[0])+ ". "+question[1]
-            self.quiz_data["options"] = [question[2], question[3], question[4], question[5]]
+            self.quiz_data["question"] = str(question[0]) + ". " + question[1]
+            self.quiz_data["options"] = [
+                question[2],
+                question[3],
+                question[4],
+                question[5],
+            ]
             self.quiz_data["answer"] = question[6]
             self.quiz_data["priority"] = question[8]
 
             self.quiz_questions.append(self.quiz_data.copy())
-        
-        # Close the connection to the database
-        quiz_master.close_connection()
+
+    def close_connection(self):
+        self.quiz_database.close_connection()
 
     def start_quiz(self):
         # Set the instruction and hide the start button
@@ -114,7 +126,7 @@ class QuizMasterGUI(QMainWindow):
         self.display_question(0)
 
     def display_question(self, index):
-                # Set the question label and options
+        # Set the question label and options
         self.question_label.setText(self.quiz_questions[index]["question"])
         self.option1_button.setText(self.quiz_questions[index]["options"][0])
         self.option2_button.setText(self.quiz_questions[index]["options"][1])
@@ -139,39 +151,31 @@ class QuizMasterGUI(QMainWindow):
     def next_question(self):
         # Check the user's answer
         selected_option = self.button_group.checkedButton()
-        quiz_master = QuizMaster("database.db")
-        self.connection = sqlite3.connect("database.db")
-        self.cursor = self.connection.cursor()
+
         if selected_option is not None:
-            serial_number = self.quiz_questions[self.current_question_index]["serial_number"]
+            serial_number = self.quiz_questions[self.current_question_index][
+                "serial_number"
+            ]
             user_answer = selected_option.text()
             correct_answer = self.quiz_questions[self.current_question_index]["answer"]
             priority = self.quiz_questions[self.current_question_index]["priority"]
-            # quiz_master.update_question(quiz_master.connection, serial_number, user_answer, correct_answer, priority)
-            updated_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self.cursor.execute(
-            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",(updated_time, serial_number))
-            self.connection.commit()
+
+            self.quiz_database.update_question(
+                serial_number, user_answer, correct_answer, priority
+            )
 
         # Check if the user's answer is correct
         if user_answer == correct_answer:
             print("Correct answer!")
-            # Set priority to 0 once the answer is correct
-            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",(0, serial_number))
-            self.connection.commit()
+            QMessageBox.information(self, "QuizMaster", "Correct answer!")
+
         else:
             print(f"Incorrect! The correct answer is {correct_answer}.")
-            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",((priority + 1), serial_number))
-            self.connection.commit()
-            # quiz_master.close_connection()
-            if selected_option.text() == self.quiz_questions[self.current_question_index]["answer"]:
-
-                # serial_number, _, _, _, _, _, correct_answer, _, priority = question_data
-                
-                QMessageBox.information(self, "QuizMaster", "Correct answer!")
-            else:
-                QMessageBox.warning(self, "QuizMaster", "Wrong answer!")
-        self.connection.close()
+            QMessageBox.warning(
+                self,
+                "QuizMaster",
+                "Wrong answer!\n Correct answer is " + correct_answer + ".",
+            )
 
         # Increase the question index
         self.current_question_index += 1
@@ -198,6 +202,8 @@ class QuizMasterGUI(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication([])
-    quiz_master = QuizMasterGUI()
-    quiz_master.show()
+    quiz_gui = QuizMasterGUI()
+    quiz_gui.show()
     app.exec()
+    print("Done....")
+    quiz_gui.close_connection()

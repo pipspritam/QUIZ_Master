@@ -166,4 +166,3 @@ SELECT * FROM quiz_table;
 
 -- INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 -- VALUES (49, 'What is the chemical symbol for iron?', 'I', 'Fe', 'Ir', 'In', 'Fe', 0);
-

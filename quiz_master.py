@@ -2,7 +2,6 @@ import sqlite3
 import datetime
 import random
 
-
 class QuizMaster:
     def __init__(self, database):
         self.connection = sqlite3.connect(database)
@@ -64,23 +63,31 @@ class QuizMaster:
         print(f"3. {option3}")
         print(f"4. {option4}")
 
-    def update_question(self, connection, serial_number, user_answer, correct_answer, priority):
+    def update_question(self, serial_number, user_answer, correct_answer, priority):
+        
         # Update the time for the question in the database
         updated_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.cursor.execute(
-            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",(updated_time, serial_number))
-        connection.commit()
+            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",
+            (updated_time, serial_number),
+        )
+        self.connection.commit()
 
         # Check if the user's answer is correct
         if user_answer == correct_answer:
             print("Correct answer!")
             # Set priority to 0 once the answer is correct
-            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",(0, serial_number))
+            self.cursor.execute(
+                "UPDATE quiz_table SET priority = ? WHERE serial_number = ?",
+                (0, serial_number),
+            )
         else:
             print(f"Incorrect! The correct answer is {correct_answer}.")
-            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",((priority + 1), serial_number))
-            connection.commit()
+            self.cursor.execute(
+                "UPDATE quiz_table SET priority = ? WHERE serial_number = ?",
+                ((priority + 1), serial_number),
+            )
+        self.connection.commit()
 
     def close_connection(self):
         self.connection.close()
-
