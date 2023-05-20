@@ -24,4 +24,4 @@
 
 -- -- Continue inserting the remaining 6 questions in a similar manner
 
--- SELECT * FROM quiz_table;
+SELECT * FROM quiz_table;
