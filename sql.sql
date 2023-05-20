@@ -105,5 +105,5 @@
 -- SELECT * FROM quiz_table;
 
 
--- SELECT * FROM quiz_table;
+SELECT * FROM quiz_table;
 
