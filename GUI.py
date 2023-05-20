@@ -1,3 +1,4 @@
+import sqlite3
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -10,7 +11,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QButtonGroup,
 )
-
+import datetime
 from quiz_master import QuizMaster
 
 class QuizMasterGUI(QMainWindow):
@@ -88,33 +89,21 @@ class QuizMasterGUI(QMainWindow):
         self.questions = quiz_master.get_questions()
         print(self.questions)
 
-        # Process and display the questions
-        # count = 1
-        # for question_data in questions:
-        #     quiz_master.display_question(question_data, count)
-        #     count += 1
-
-        #     user_answer = input("Enter your answer: ")
-
-        #     serial_number, _, _, _, _, _, correct_answer, _, priority = question_data
-        #     quiz_master.update_question(serial_number, user_answer, correct_answer, priority)
-
-        #     print("\n")
-
         # Variable to keep track of the current question index
         self.current_question_index = 0
 
         self.quiz_questions = []
         for question in self.questions:
-            # self.quiz_data["serial_number"] = question[0]
+            self.quiz_data["serial_number"] = question[0]
             self.quiz_data["question"] = str(question[0])+ ". "+question[1]
             self.quiz_data["options"] = [question[2], question[3], question[4], question[5]]
             self.quiz_data["answer"] = question[6]
+            self.quiz_data["priority"] = question[8]
 
             self.quiz_questions.append(self.quiz_data.copy())
         
         # Close the connection to the database
-        # quiz_master.close_connection()
+        quiz_master.close_connection()
 
     def start_quiz(self):
         # Set the instruction and hide the start button
@@ -150,15 +139,39 @@ class QuizMasterGUI(QMainWindow):
     def next_question(self):
         # Check the user's answer
         selected_option = self.button_group.checkedButton()
-
+        quiz_master = QuizMaster("database.db")
+        self.connection = sqlite3.connect("database.db")
+        self.cursor = self.connection.cursor()
         if selected_option is not None:
+            serial_number = self.quiz_questions[self.current_question_index]["serial_number"]
+            user_answer = selected_option.text()
+            correct_answer = self.quiz_questions[self.current_question_index]["answer"]
+            priority = self.quiz_questions[self.current_question_index]["priority"]
+            # quiz_master.update_question(quiz_master.connection, serial_number, user_answer, correct_answer, priority)
+            updated_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.cursor.execute(
+            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",(updated_time, serial_number))
+            self.connection.commit()
+
+        # Check if the user's answer is correct
+        if user_answer == correct_answer:
+            print("Correct answer!")
+            # Set priority to 0 once the answer is correct
+            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",(0, serial_number))
+            self.connection.commit()
+        else:
+            print(f"Incorrect! The correct answer is {correct_answer}.")
+            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",((priority + 1), serial_number))
+            self.connection.commit()
+            # quiz_master.close_connection()
             if selected_option.text() == self.quiz_questions[self.current_question_index]["answer"]:
+
                 # serial_number, _, _, _, _, _, correct_answer, _, priority = question_data
-                # quiz_master.update_question(serial_number, user_answer, correct_answer, priority)
+                
                 QMessageBox.information(self, "QuizMaster", "Correct answer!")
             else:
                 QMessageBox.warning(self, "QuizMaster", "Wrong answer!")
-                
+        self.connection.close()
 
         # Increase the question index
         self.current_question_index += 1

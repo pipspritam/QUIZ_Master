@@ -64,49 +64,23 @@ class QuizMaster:
         print(f"3. {option3}")
         print(f"4. {option4}")
 
-    def update_question(self, serial_number, user_answer, correct_answer, priority):
+    def update_question(self, connection, serial_number, user_answer, correct_answer, priority):
         # Update the time for the question in the database
         updated_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.cursor.execute(
-            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",
-            (updated_time, serial_number),
-        )
-        self.connection.commit()
+            "UPDATE quiz_table SET time = ? WHERE serial_number = ?",(updated_time, serial_number))
+        connection.commit()
 
         # Check if the user's answer is correct
         if user_answer == correct_answer:
             print("Correct answer!")
             # Set priority to 0 once the answer is correct
-            self.cursor.execute(
-                "UPDATE quiz_table SET priority = ? WHERE serial_number = ?",
-                (0, serial_number),
-            )
+            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",(0, serial_number))
         else:
             print(f"Incorrect! The correct answer is {correct_answer}.")
-            self.cursor.execute(
-                "UPDATE quiz_table SET priority = ? WHERE serial_number = ?",
-                ((priority + 1), serial_number),
-            )
-            self.connection.commit()
+            self.cursor.execute("UPDATE quiz_table SET priority = ? WHERE serial_number = ?",((priority + 1), serial_number))
+            connection.commit()
 
     def close_connection(self):
         self.connection.close()
 
-
-# Example of calling the QuizMaster class
-# quiz_master = QuizMaster("database.db")
-# questions = quiz_master.get_questions()
-
-# count = 1
-# for question_data in questions:
-#     quiz_master.display_question(question_data, count)
-#     count += 1
-
-#     user_answer = input("Enter your answer: ")
-
-# serial_number, _, _, _, _, _, correct_answer, _, priority = question_data
-# quiz_master.update_question(serial_number, user_answer, correct_answer, priority)
-
-#     print("\n")
-
-# quiz_master.close_connection()

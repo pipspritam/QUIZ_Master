@@ -15,7 +15,7 @@ for question_data in questions:
     user_answer = input("Enter your answer: ")
 
     serial_number, _, _, _, _, _, correct_answer, _, priority = question_data
-    quiz_master.update_question(serial_number, user_answer, correct_answer, priority)
+    quiz_master.update_question(quiz_master.connection, serial_number, user_answer, correct_answer, priority)
 
     print("\n")
 
