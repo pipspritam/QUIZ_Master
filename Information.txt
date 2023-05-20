@@ -1,0 +1,124 @@
+White paper
+
+introduction to cloud computing
+
+introduction to cloud computing
+
+white paper
+
+executive summary
+a common understanding of cloud computing is continuously evolving, and the terminology and concepts used to define it often
+need clarifying. Press coverage can be vague or may not fully capture the extent of what cloud computing entails or represents,
+sometimes reporting how companies are making their solutions available in the cloud or how cloud computing is the way
+forward, but not examining the characteristics, models, and services involved in understanding what cloud computing is and what
+it can become.
+This white paper introduces internet-based cloud computing, exploring the characteristics, service models, and deployment models
+in use today, as well as the benefits and challenges associated with cloud computing. Also discussed are the communications
+services in the cloud (including ways to access the cloud, such as web apis and media control interfaces) and the importance of
+scalability and flexibility in a cloud-based environment.
+Also noted for businesses desiring to start using communication services, are the interface choices available, including web 2.0
+apis, media control interfaces, java interfaces, and xml based interfaces, catering to a wide range of application and service
+creation developers.
+
+2
+
+introduction to cloud computing
+
+white paper
+
+introduction
+this white paper is an introduction to the terms, characteristics, and services associated with internet-based computing, commonly referred to as
+cloud computing. Characteristics, such as infrastructure, provisioning, network access, and managed metering are presented.
+The primary business service models being deployed (such as software, platform, and infrastructure as a service) and common deployment
+models employed by service providers and users to use and maintain the cloud services (such as the private, public, community, and hybrid
+clouds) are discussed.
+Also introduced are the benefits and challenges associated with cloud computing, and for those seeking to use communications services in the
+cloud, briefly presented are different ways of determining the interfaces needed to use these communications services.
+
+Cloud computing
+the term cloud, as used in this white paper, appears to have its origins in network diagrams that represented the internet, or various parts of
+it, as schematic clouds. Cloud computing was coined for what happens when applications and services are moved into the internet cloud.
+Cloud computing is not something that suddenly appeared overnight; in some form, it may trace back to a time when computer systems remotely
+time-shared computing resources and applications. More currently though, cloud computing refers to the many different types of services and
+applications being delivered in the internet cloud, and the fact that, in many cases, the devices used to access these services and applications
+do not require any special applications.
+Many companies are delivering services from the cloud. Some notable examples include the following:
+google has a private cloud that it uses for delivering google docs and many other services to its users, including email access, document
+applications, text translations, maps, web analytics, and much more.
+microsoft has microsoft office 365 online service that allows for content and business intelligence tools to be moved into the cloud, and
+microsoft currently makes its office applications available in a cloud.
+salesforce. Com runs its application set for its customers in a cloud, and its force. Com and vmforce. Com products provide developers with
+platforms to build customized cloud services.
+But, what is cloud computing? The following sections note cloud and cloud computing characteristics, services models, deployment models,
+benefits, and challenges.
+
+Characteristics
+cloud computing has a variety of characteristics, with the main ones being:
+shared infrastructure uses a virtualized software model, enabling the sharing of physical services, storage, and networking capabilities. The
+cloud infrastructure, regardless of deployment model, seeks to make the most of the available infrastructure across a number of users.
+dynamic provisioning allows for the provision of services based on current demand requirements. This is done automatically using software
+automation, enabling the expansion and contraction of service capability, as needed. This dynamic scaling needs to be done while maintaining
+high levels of reliability and security.
+network access needs to be accessed across the internet from a broad range of devices such as pcs, laptops, and mobile devices,
+using standards-based apis (for example, ones based on http). Deployments of services in the cloud include everything from using business
+applications to the latest application on the newest smartphones.
+managed metering uses metering for managing and optimizing the service and to provide reporting and billing information. In this way,
+consumers are billed for services according to how much they have actually used during the billing period.
+In short, cloud computing allows for the sharing and scalable deployment of services, as needed, from almost any location, and for which the
+customer can be billed based on actual usage.
+
+4
+
+introduction to cloud computing
+
+white paper
+
+service models
+once a cloud is established, how its cloud computing services are deployed in terms of business models can differ depending on requirements.
+The primary service models being deployed (see figure 1) are commonly known as:
+software as a service (saas) consumers purchase the ability to access and use an application or service that is hosted in the cloud. A
+benchmark example of this is salesforce. Com, as discussed previously, where necessary information for the interaction between the consumer and
+the service is hosted as part of the service in the cloud.
+Also, microsoft has made a significant investment in this area, and as part of the cloud computing option for microsoft office 365, its office suite
+is available as a subscription through its cloud-based online services.
+platform as a service (paas) consumers purchase access to the platforms, enabling them to deploy their own software and applications in
+the cloud. The operating systems and network access are not managed by the consumer, and there might be constraints as to which applications
+can be deployed. Examples include amazon web services (aws), rackspace and microsoft azure.
+infrastructure as a service (iaas) consumers control and manage the systems in terms of the operating systems, applications, storage, and
+network connectivity, but do not themselves control the cloud infrastructure.
+Also known are the various subsets of these models that may be related to a particular industry or market. Communications as a service (caas) is
+one such subset model used to describe hosted ip telephony services. Along with the move to caas is a shift to more ip-centric communications
+and more sip trunking deployments. With ip and sip in place, it can be as easy to have the pbx in the cloud as it is to have it on the premise. In
+this context, caas could be seen as a subset of saas.
+
+Software as a service (saas)
+
+enduser application is delivered as a service. Platform and infrastructure is abstracted, and
+can deployed and managed with less effort.
+
+Platform as a service (paas)
+
+application platform onto which custom applications and services can be deployed. Can be
+built and deployed more inexpensively, although services need to be supported and managed.
+
+Infrastructure as a service (iaas)
+
+physical infrastructure is abstracted to provide computing, storage, and networking as a
+service, avoiding the expense and need for dedicated systems.
+
+Figure 1. Service model types
+
+deployment models
+deploying cloud computing can differ depending on requirements, and the following four deployment models have been identified, each with
+specific characteristics that support the needs of the services and users of the clouds in particular ways (see figure 2).
+private cloud the cloud infrastructure has been deployed, and is maintained and operated for a specific organization. The operation may be
+in-house or with a third party on the premises.
+community cloud the cloud infrastructure is shared among a number of organizations with similar interests and requirements. This may help
+limit the capital expenditure costs for its establishment as the costs are shared among the organizations. The operation may be in-house or with
+a third party on the premises.
+public cloud the cloud infrastructure is available to the public on a commercial basis by a cloud service provider. This enables a consumer to
+develop and deploy a service in the cloud with very little financial outlay compared to the capital expenditure requirements normally associated
+with other deployment options.
+hybrid cloud the cloud infrastructure consists of a number of clouds of any type, but the clouds have the ability through their interfaces to
+allow data and/or applications to be moved from one cloud to another. This can be a combination of private and public clouds that support the
+requirement to retain some data in an organization, and also the need to offer services in the cloud.
