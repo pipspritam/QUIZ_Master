@@ -10,12 +10,12 @@ def read_text_from_file(file_path):
 
 # Function to generate questions using GPT-3
 def generate_questions(text):
-    openai.api_key = "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"  # Replace with your OpenAI API key
+    openai.api_key = "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"  # Replace with your OpenAI API key
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=text,
         max_tokens=50,
-        n=5,  # Number of questions to generate
+        n=15,  # Number of questions to generate
         stop=None,
         temperature=0.6,
         top_p=1.0,
@@ -40,7 +40,7 @@ prompt="  \nGive me 10 questions so that I can use them in a table with the foll
 text = read_text_from_file(txt_file)
 questions = generate_questions(text+prompt)
 
-print(text)
+# print(text)
 
 # Print generated questions
 for i, question in enumerate(questions):
