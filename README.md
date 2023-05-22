@@ -35,9 +35,9 @@ Before running the QuizMaster App, ensure you have the following:
     ```
     pip install -r requirements.txt
     ```
-5. Run the `quizmaster.py` file:
+5. Run the `GUI.py` file:
     ```
-    python quizmaster.py
+    python GUI.py
     ```
 6. The QuizMaster App GUI will launch, allowing you to start using the application.
 
