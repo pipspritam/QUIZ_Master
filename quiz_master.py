@@ -2,6 +2,7 @@ import sqlite3
 import datetime
 import random
 
+
 class QuizMaster:
     def __init__(self, database):
         self.connection = sqlite3.connect(database)
@@ -64,7 +65,6 @@ class QuizMaster:
         print(f"4. {option4}")
 
     def update_question(self, serial_number, user_answer, correct_answer, priority):
-        
         # Update the time for the question in the database
         updated_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.cursor.execute(

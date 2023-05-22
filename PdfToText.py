@@ -86,10 +86,8 @@ class QuizDatabase:
 
 # Example usage
 def main():
-    api_key = "YOUR_OPENAI_API_KEY"
-    information_file = (
-        "Information.txt"
-    )
+    api_key = "OpenAI_API_KEY"
+    information_file = "Information.txt"
     dbname = input("Enter the name of the database: ")
 
     generator = QuizQuestionGenerator(api_key)
@@ -105,8 +103,8 @@ def main():
     Do not repeat given example questions in the generated questions. Start question numbering from 1, and increment by 1 for each question like this 1, 2, 3, 4, 5 and keep going for all 10 questions.
     Give me questions with proper serial number and format. 
     """
-    
-    text=text+prompt
+
+    text = text + prompt
     questions = generator.generate_questions(text)
 
     with open("questions.txt", "w") as file:

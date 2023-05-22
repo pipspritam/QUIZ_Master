@@ -15,12 +15,12 @@ from quiz_master import QuizMaster
 
 
 class QuizMasterGUI(QMainWindow):
-    def __init__(self):
+    def __init__(self, database):
         # Call the parent constructor
         super().__init__()
 
         # Create an instance of QuizMaster with the database filename
-        self.quiz_database = QuizMaster("database.db")
+        self.quiz_database = QuizMaster(database)
 
         # Set the window title
         self.setWindowTitle("QuizMaster")
@@ -202,7 +202,9 @@ class QuizMasterGUI(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication([])
-    quiz_gui = QuizMasterGUI()
+    # input database name
+    database = input("Enter the name of the database: ")
+    quiz_gui = QuizMasterGUI(database + ".db")
     quiz_gui.show()
     app.exec()
     print("Done....")
