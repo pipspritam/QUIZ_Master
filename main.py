@@ -1,8 +1,6 @@
 import sqlite3
 import datetime
 import random
-import os
-import platform
 
 # MAX_QUESTIONS = 5
 
@@ -54,33 +52,7 @@ quiz_question = set(
 )
 
 count = 1
-# for question_data in quiz_question:
-#     (
-#         serial_number,
-#         question,
-#         correct_answer,
-#         option1,
-#         option2,
-#         option3,
-#         option4,
-#         time,
-#         priority,
-#     ) = question_data
-#     print("---------------------Question ",count, "-----------------------")
-#     count+=1
-#     print(f"Serial Number: {serial_number}")
-#     print(f"Question: {question}")
-#     print(f"Options:")
-#     # print(f"1. {option1}")
-#     # print(f"2. {option2}")
-#     # print(f"3. {option3}")
-#     # print(f"4. {option4}")
-#     print(f"Correct Answer: {correct_answer}")
-#     print(f"Time: {time}")
-#     print(f"Priority: {priority}")
     
-
-
 #display questions 
 for question_data in quiz_question:
     (
