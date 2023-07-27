@@ -1,16 +1,18 @@
-CREATE TABLE quiz_table (
-    serial_number INTEGER PRIMARY KEY,
-    question TEXT,
-    option1 TEXT,
-    option2 TEXT,
-    option3 TEXT,
-    option4 TEXT,
-    correct_answer TEXT,
-    time timestamp DEFAULT CURRENT_TIMESTAMP,
-    priority INTEGER
-);
+-- CREATE TABLE quiz_table (
+--     serial_number INTEGER PRIMARY KEY,
+--     question TEXT,
+--     option1 TEXT,
+--     option2 TEXT,
+--     option3 TEXT,
+--     option4 TEXT,
+--     correct_answer TEXT,
+--     time timestamp DEFAULT CURRENT_TIMESTAMP,
+--     priority INTEGER
+-- );
 
 -- drop table quiz_table;
+
+DELETE FROM quiz_table;
 
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (1, 'What is the capital of France?', 'Paris', 'London', 'Berlin', 'Madrid', 'Paris', 0);
@@ -159,3 +161,6 @@ VALUES (48, 'Who is the founder of Microsoft?', 'Bill Gates', 'Steve Jobs', 'Mar
 
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (49, 'What is the chemical symbol for iron?', 'I', 'Fe', 'Ir', 'In', 'Fe', 0);
+
+INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
+VALUES (50, 'Who is the author of the novel "The Great Gatsby"?', 'F. Scott Fitzgerald', 'Ernest Hemingway', 'Virginia Woolf', 'George Orwell', 'F. Scott Fitzgerald', 0);

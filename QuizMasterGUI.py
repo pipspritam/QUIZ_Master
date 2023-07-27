@@ -11,7 +11,7 @@ from PySide6.QtWidgets import (
     QButtonGroup,
 )
 
-from quiz_master import QuizMaster
+from QuizMasterCLI import QuizMaster
 
 
 class QuizMasterGUI(QMainWindow):
