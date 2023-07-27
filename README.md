@@ -2,6 +2,11 @@
 
 The QuizMaster App is an interactive quiz application developed using Python with PySide6 for the graphical user interface (GUI) and SQLite for the backend database. This app incorporates a question sorting mechanism based on question priority, which is determined by the number of times a question has been attempted incorrectly, as well as the timestamp of the last occurrence of that particular question. Additionally, the app shuffles a subset of questions based on priority, another subset based on the timestamp, and includes a set of unique questions derived from the shuffling of both sets.
 
+<img width="441" alt="Screenshot 2023-07-27 at 11 29 12 AM" src="https://github.com/rishavnathpati/QUIZ_Master/assets/40483229/a743b4b2-4c6f-486c-888d-a559d8d89dd3">
+<img width="612" alt="Screenshot 2023-07-27 at 11 30 05 AM" src="https://github.com/rishavnathpati/QUIZ_Master/assets/40483229/ede6227e-7192-407a-bcc1-dce77c22d242">
+<img width="664" alt="Screenshot 2023-07-27 at 11 31 02 AM" src="https://github.com/rishavnathpati/QUIZ_Master/assets/40483229/d84b4d33-4ffe-43a5-89e8-ed91b807f112">
+
+
 ## Features
 
 - User-friendly graphical user interface (GUI) developed using PySide6.
