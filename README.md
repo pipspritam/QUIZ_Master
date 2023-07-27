@@ -40,9 +40,9 @@ Before running the QuizMaster App, ensure you have the following:
     ```
     pip install -r requirements.txt
     ```
-5. Run the `GUI.py` file:
+5. Run the `QuizMasterGUI.py` file:
     ```
-    python GUI.py
+    python QuizMasterGUI.py
     ```
 6. The QuizMaster App GUI will launch, allowing you to start using the application.
 
@@ -57,8 +57,8 @@ Before running the QuizMaster App, ensure you have the following:
 7. Once you have completed the quiz, you will receive a score and have the option to restart or exit the app.
 ## Customization
 
-- You can customize the questions by modifying the SQLite database. Use any SQLite client or command-line tool to access the database file (`questions.db`) and update/add questions as needed.
-- Adjust the shuffling mechanism and sorting algorithm in the code (`quizmaster.py`) based on your specific requirements.
+- You can customize the questions by modifying the SQLite database. Use any SQLite client or command-line tool to access the database file (`database.db`) and update/add questions as needed.
+- Adjust the shuffling mechanism and sorting algorithm in the code (`QuizMasterGUI.py`) based on your specific requirements.
 
 ## License
 

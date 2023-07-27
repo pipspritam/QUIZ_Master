@@ -9,60 +9,14 @@ class QuizMaster:
         self.cursor = self.connection.cursor()
 
     def get_questions(self):
-        # Retrieving the quiz data from the database
-        time_questions = self.cursor.execute(
-            "SELECT serial_number, question, option1, option2, option3, option4, correct_answer, time, priority FROM quiz_table ORDER BY time ASC LIMIT 13"
-        ).fetchall()
-
-        priority_questions = self.cursor.execute(
-            "SELECT serial_number, question, option1, option2, option3, option4, correct_answer, time, priority FROM quiz_table ORDER BY priority DESC LIMIT 12"
-        ).fetchall()
-
-        oldest_time_questions = list(time_questions)[:3]
-        highest_priority_questions = list(priority_questions)[:2]
-
-        # Set of 10 questions based on intersection
-        intersection_questions = set((list(time_questions)[3:13])) & set(
-            list(priority_questions)[2:12]
-        )
+        # Retrieve the quiz data from the database
+        query = "SELECT serial_number, question, option1, option2, option3, option4, correct_answer, time, priority FROM quiz_table ORDER BY time ASC, priority DESC"
+        all_questions = self.cursor.execute(query).fetchall()
 
         # Select 5 random questions
-        if len(intersection_questions) >= 5:
-            random_questions = random.sample(list(intersection_questions), 5)
-        else:
-            intersection_questions = set((list(time_questions)[3:13])) | set(
-                list(priority_questions)[2:12]
-            )
-            random_questions = random.sample(list(intersection_questions), 5)
+        selected_questions = random.sample(all_questions, 5)
 
-        # Combine the question sets
-        quiz_question = set(
-            list(random_questions) + oldest_time_questions + highest_priority_questions
-        )
-
-        return quiz_question
-
-    def display_question(self, question_data, count):
-        (
-            serial_number,
-            question,
-            option1,
-            option2,
-            option3,
-            option4,
-            correct_answer,
-            time,
-            priority,
-        ) = question_data
-
-        print("---------------------Question ", count, "-----------------------")
-        count += 1
-        print(serial_number, " ", question)
-        print("Options:")
-        print(f"1. {option1}")
-        print(f"2. {option2}")
-        print(f"3. {option3}")
-        print(f"4. {option4}")
+        return selected_questions
 
     def update_question(self, serial_number, user_answer, correct_answer, priority):
         # Update the time for the question in the database
@@ -71,7 +25,6 @@ class QuizMaster:
             "UPDATE quiz_table SET time = ? WHERE serial_number = ?",
             (updated_time, serial_number),
         )
-        self.connection.commit()
 
         # Check if the user's answer is correct
         if user_answer == correct_answer:
@@ -87,7 +40,61 @@ class QuizMaster:
                 "UPDATE quiz_table SET priority = ? WHERE serial_number = ?",
                 ((priority + 1), serial_number),
             )
+
         self.connection.commit()
 
     def close_connection(self):
         self.connection.close()
+
+
+def display_question(question_data, count):
+    (
+        serial_number,
+        question,
+        option1,
+        option2,
+        option3,
+        option4,
+        correct_answer,
+        time,
+        priority,
+    ) = question_data
+
+    print("---------------------Question ", count, "-----------------------")
+    count += 1
+    print(serial_number, " ", question)
+    print("Options:")
+    print(f"1. {option1}")
+    print(f"2. {option2}")
+    print(f"3. {option3}")
+    print(f"4. {option4}")
+
+
+def main():
+    database = "questions.db"
+    quiz_master = QuizMaster(database)
+    questions = quiz_master.get_questions()
+
+    count = 1
+    for question in questions:
+        display_question(question, count)
+        user_answer = input("Your answer (1/2/3/4): ").strip().lower()
+        (
+            serial_number,
+            _,
+            _,
+            _,
+            _,
+            _,
+            correct_answer,
+            _,
+            priority,
+        ) = question
+        quiz_master.update_question(serial_number, user_answer, correct_answer, priority)
+        count += 1
+
+    quiz_master.close_connection()
+
+
+if __name__ == "__main__":
+    main()

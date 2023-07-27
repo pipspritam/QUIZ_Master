@@ -26,12 +26,9 @@ VALUES (3, 'What is the chemical symbol for gold?', 'Ag', 'Hg', 'Au', 'Pb', 'Au'
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (4, 'What is the tallest mountain in the world?', 'Mount Kilimanjaro', 'Mount Everest', 'Mount McKinley', 'Mount Fuji', 'Mount Everest', 0);
 
-SELECT * FROM quiz_table;
-
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (5, 'Which planet is known as the Red Planet?', 'Mars', 'Venus', 'Jupiter', 'Saturn', 'Mars', 0);
 
-SELECT * FROM quiz_table;
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (6, 'What is the capital city of France?', 'London', 'Rome', 'Paris', 'Berlin', 'Paris', 0);
 
@@ -43,6 +40,7 @@ VALUES (8, 'What is the chemical symbol for gold?', 'Au', 'Ag', 'Fe', 'Hg', 'Au'
 
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (9, 'Who wrote the play "Romeo and Juliet"?', 'William Shakespeare', 'George Bernard Shaw', 'Oscar Wilde', 'Jane Austen', 'William Shakespeare', 0);
+
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (10, 'Who is the author of the play "Hamlet"?', 'William Shakespeare', 'Arthur Miller', 'George Bernard Shaw', 'Tennessee Williams', 'William Shakespeare', 0);
 
@@ -164,3 +162,5 @@ VALUES (49, 'What is the chemical symbol for iron?', 'I', 'Fe', 'Ir', 'In', 'Fe'
 
 INSERT INTO quiz_table (serial_number, question, option1, option2, option3, option4, correct_answer, priority)
 VALUES (50, 'Who is the author of the novel "The Great Gatsby"?', 'F. Scott Fitzgerald', 'Ernest Hemingway', 'Virginia Woolf', 'George Orwell', 'F. Scott Fitzgerald', 0);
+
+SELECT * FROM quiz_table;
